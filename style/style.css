@@ -1,0 +1,54 @@
+body{
+    background-color: olivedrab;
+}
+
+#cards{
+    width: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.card{
+    border:  solid #fff;
+    border-radius: 50px;
+    width: 18%;
+    text-align: center;
+    margin-bottom: 2%;  
+    margin-left: 1%;
+    margin-right: 1%;
+    cursor: pointer;
+}
+
+.disable{
+    border:  solid #fff;
+    border-radius: 50px;
+    width: 18%;
+    text-align: center;
+    margin-bottom: 2%;  
+    margin-left: 1%;
+    margin-right: 1%;
+    filter: blur(2px);
+    background: rgba(0,0,0,0.5);
+}
+
+.card:hover{
+    border: solid #f00;
+    color: rgb(30, 45, 1);
+    text-shadow: -0.5px -0.5px 0 red,  
+         0.5px -0.5px 0 red,
+        -0.5px  0.5px 0 red,
+         0.5px  0.5px 0 red;
+    width: 20%;
+}
+
+.imgArma{
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+}
