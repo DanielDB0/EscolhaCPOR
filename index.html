@@ -6,14 +6,21 @@
     <title>Escolha Das Armas</title>
     <link rel="shortcut icon" href="img/EB.png">
     <link rel="stylesheet" href="style/style.css">
-    <script src="script.js" async></script>
+    <script src="js/script.js" async></script>
 </head>
 <body>
-    
+    <div id="modalAuto" class="modal-fundo">
+      <div class="modal-caixa">
+        <span class="modal-fechar" onclick="fecharModal()">&times;</span>
+        <h2 class="modalErro">Escolhas Finalizadas!</h2>
+        <div class="modalTry" id="modalTry">Ver Armas</div>
+      </div>
+    </div>
 
     <h2>Escolha das Armas - Alunos CPOR/SP Turma 2026</h2>
     <div id="cards">
 
     </div>
+    <div class="modalTry" id="modalTry">Ver Armas</div>
 </body>
 </html>
