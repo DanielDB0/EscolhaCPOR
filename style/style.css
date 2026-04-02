@@ -60,6 +60,32 @@ html{
     margin-bottom: 30px;
 }
 
+.down{
+    margin-top: 5px;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    cursor: pointer;
+    background-color: rgb(55, 77, 11);
+}
+
+table {
+    text-align: center;
+    width: 100%;
+        border-collapse: collapse; /* Faz as bordas se unirem */
+    }
+    th, td {
+        border: 1px solid black; /* Borda de 1px preta */
+        padding: 3px; /* Espaçamento interno */
+        text-align: left; /* Alinhamento do texto */
+    }
+    th {
+        background-color: olivedrab;
+    }
+
+.imgDown{
+    width: 40px;
+}
+
 #cards{
     width: 100%; 
     display: flex;
@@ -79,6 +105,17 @@ html{
     margin-left: 1%;
     margin-right: 1%;
     cursor: pointer;
+}
+
+.card1{
+    border:  solid #fff;
+    border-radius: 50px;
+    width: 18%;
+    text-align: center;
+    margin-bottom: 2%;  
+    margin-left: 1%;
+    margin-right: 1%;
+    overflow: hidden;
 }
 
 .disable{
