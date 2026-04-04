@@ -228,3 +228,9 @@ h2{
     font-size:15px; 
     cursor: pointer;
 }
+
+#undo{
+    text-align: center;
+    cursor: pointer;
+    display: none;
+}

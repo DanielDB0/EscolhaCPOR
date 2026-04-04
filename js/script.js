@@ -15,9 +15,9 @@ const imgArmas = [
     'cavalaria',
     'artilharia',
     'engenharia',
-    'intendencia',
     'comunicacoes',
-    'matbel'
+    'matbel',
+    'intendencia',
 ]
 
 const nomeArmas = [
@@ -25,15 +25,16 @@ const nomeArmas = [
     'Cavalaria',
     'Artilharia',
     'Engenharia',
-    'Intendência',
     'Comunicações',
-    'Material Bélico'
+    'Material Bélico',
+    'Intendência',
 ]
 
 let escolhasArmas = [[],[],[],[],[],[],[]]
 
 const armas = [nomeArmas, imgArmas]
 const alunoPos = document.querySelector('.PosAluno')
+const Undo = document.querySelector('#undo')
 
 let posAluno = 0
 
@@ -215,19 +216,22 @@ let Alunos = [
     [174, 628, 'FERNANDES'], 
     [175, 629, 'BENVENUTO']
 ];
-console.log(Alunos.length)
 
 const card = `
 <div class="card" id="Arma%%%">
     </div>
     `
-    function att(arma, index){
+    function att(arma, index, origem = 'do'){
         if(posAluno < 175){
             alunoPos.innerHTML = `
             <h1>ESCOLHA: ${posAluno + 1}º Lugar Al ${Alunos[posAluno + 1][1]} - ${Alunos[posAluno + 1][2]} </h1>
             `
         }
-        if(posAluno != 0){
+        else{
+            alunoPos.innerHTML = '<h1>Escolhas Finalizadas!</h1>'
+        }
+        if(posAluno != 0 && origem !== 'undo'){
+            Undo.style.display = "inline"
             escolhasArmas[index].push(posAluno)
         }
         arma.innerHTML = `
@@ -251,8 +255,8 @@ const card = `
         }
         if(posAluno == 175){
             abrirModal();
-        }
-        console.log(escolhasArmas)
+        }   
+        console.log(index + ' ' + escolhasArmas[index] + ' ' + posAluno)
     }
     const cardContainer = document.querySelector('#cards')
     
@@ -269,13 +273,14 @@ const card = `
     artilharia.addEventListener("click", Art)
     const engenharia = document.querySelector('#Arma4')
     engenharia.addEventListener("click", Eng)
-    const intendencia = document.querySelector('#Arma5')
-    intendencia.addEventListener("click", Int)
-    const comunicacoes = document.querySelector('#Arma6')
+    const comunicacoes = document.querySelector('#Arma5')
     comunicacoes.addEventListener("click", Com)
-    const matbel = document.querySelector('#Arma7')
+    const matbel = document.querySelector('#Arma6')
     matbel.addEventListener("click", Mat)
-
+    const intendencia = document.querySelector('#Arma7')
+    intendencia.addEventListener("click", Int)
+    
+    const ObjArma = [infantaria, cavalaria, artilharia, engenharia, comunicacoes, matbel, intendencia]
 
 function Inf(){
     if(25-escolhasArmas[0].length < 1){
@@ -305,26 +310,26 @@ function Eng(){
     posAluno++
     att(engenharia, 3)
 }
-function Int(){
-    if(25-escolhasArmas[4].length < 1){
-        intendencia.removeEventListener(Int)
-    }
-    posAluno++
-    att(intendencia, 4)
-}
 function Com(){
-    if(25-escolhasArmas[5].length < 1){
+    if(25-escolhasArmas[4].length < 1){
         comunicacoes.removeEventListener(Com)
     }
     posAluno++
-    att(comunicacoes, 5)
+    att(comunicacoes, 4)
 }
 function Mat(){
-    if(25-escolhasArmas[6].length < 1){
+    if(25-escolhasArmas[5].length < 1){
         matbel.removeEventListener(Mat)
     }
     posAluno++
-    att(matbel, 6)
+    att(matbel, 5)
+}
+function Int(){
+    if(25-escolhasArmas[6].length < 1){
+        intendencia.removeEventListener(Int)
+    }
+    posAluno++
+    att(intendencia, 6)
 }
 
 document.querySelector("#modalTry").addEventListener("click", verArma)
@@ -381,11 +386,29 @@ function exportExcel(index){
 
 function verArma(){
     fecharModal()
-    attTbArma(infantaria, 0)
-    attTbArma(cavalaria, 1)
-    attTbArma(artilharia, 2)
-    attTbArma(engenharia, 3)
-    attTbArma(intendencia, 4)
-    attTbArma(comunicacoes, 5)
-    attTbArma(matbel, 6)
+    for (let index = 0; index < 7; index++) {
+        attTbArma(ObjArma[index], index)
+    }
+}
+
+Undo.addEventListener("click", undo)
+
+function undo(){
+    for(index = 0; index < 7; index++){
+        if(escolhasArmas[index][escolhasArmas[index].length - 1] == posAluno) {
+            escolhasArmas[index].pop()
+            console.log(index + ' ' + escolhasArmas[index] + ' ' + posAluno)
+            posAluno--
+            if(posAluno == 0){
+                Undo.style.display = "none"
+            }
+            if(escolhasArmas[index].length == 24){
+                ObjArma[index].classList.remove('disable')
+                ObjArma[index].classList.add('card')
+            }
+            att(ObjArma[index], index, 'undo')
+            break
+        }
+    }
+
 }
