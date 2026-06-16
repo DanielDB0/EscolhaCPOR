@@ -4,6 +4,7 @@ function abrirModal() {
 
 function fecharModal() {
     document.getElementById("modalAuto").style.display = "none";
+    Undo.style.display = "none"
 }
 
 const imgArmas = [
@@ -11,9 +12,9 @@ const imgArmas = [
     'cavalaria',
     'artilharia',
     'engenharia',
+    'intendencia',
     'comunicacoes',
     'matbel',
-    'intendencia',
 ]
 
 const nomeArmas = [
@@ -21,9 +22,9 @@ const nomeArmas = [
     'Cavalaria',
     'Artilharia',
     'Engenharia',
+    'Intendência',
     'Comunicações',
     'Material Bélico',
-    'Intendência',
 ]
 
 let escolhasArmas = [[],[],[],[],[],[],[]]
@@ -213,7 +214,7 @@ let Alunos = [
 
 margem = 175 - Alunos.length + 1
 for (let i = 0; i < margem; i++) {
-    Alunos.push(['',''])
+    Alunos.push(['000','DESLIGADO'])
 }
 
 
@@ -273,14 +274,14 @@ function att(arma, index, origem = 'do'){
     artilharia.addEventListener("click", Art)
     const engenharia = document.querySelector('#Arma4')
     engenharia.addEventListener("click", Eng)
-    const comunicacoes = document.querySelector('#Arma5')
+    const comunicacoes = document.querySelector('#Arma6')
     comunicacoes.addEventListener("click", Com)
-    const matbel = document.querySelector('#Arma6')
+    const matbel = document.querySelector('#Arma7')
     matbel.addEventListener("click", Mat)
-    const intendencia = document.querySelector('#Arma7')
+    const intendencia = document.querySelector('#Arma5')
     intendencia.addEventListener("click", Int)
     
-    const ObjArma = [infantaria, cavalaria, artilharia, engenharia, comunicacoes, matbel, intendencia]
+    const ObjArma = [infantaria, cavalaria, artilharia, engenharia, intendencia, comunicacoes, matbel]
 
 function Inf(){
     if(25-escolhasArmas[0].length < 1){
@@ -311,25 +312,25 @@ function Eng(){
     att(engenharia, 3)
 }
 function Com(){
-    if(25-escolhasArmas[4].length < 1){
+    if(25-escolhasArmas[5].length < 1){
         comunicacoes.removeEventListener(Com)
     }
     posAluno++
-    att(comunicacoes, 4)
+    att(comunicacoes, 5)
 }
 function Mat(){
-    if(25-escolhasArmas[5].length < 1){
+    if(25-escolhasArmas[6].length < 1){
         matbel.removeEventListener(Mat)
     }
     posAluno++
-    att(matbel, 5)
+    att(matbel, 6)
 }
 function Int(){
-    if(25-escolhasArmas[6].length < 1){
+    if(25-escolhasArmas[4].length < 1){
         intendencia.removeEventListener(Int)
     }
     posAluno++
-    att(intendencia, 6)
+    att(intendencia, 4)
 }
 
 document.querySelector("#modalTry").addEventListener("click", verArma)
@@ -351,7 +352,7 @@ function attTbArma(arma, index){
 `
         for(i = 0; i < escolhasArmas[index].length; i++){
             console.log(Alunos[escolhasArmas[index][i]][0])
-            Alu.innerHTML += `<tr><th>${escolhasArmas[index][i]}</th><th>${Alunos[escolhasArmas[index][i]][0]}</th><th>${Alunos[escolhasArmas[index][i]][1]}</th></tr>`
+            Alu.innerHTML += `<tr><th>${escolhasArmas[index][i]}</th><th>${Number(String(index + 1) + Alunos[escolhasArmas[index][i]][0])}</th><th>${Alunos[escolhasArmas[index][i]][1]}</th></tr>`
         }
         arma.classList.remove('disable')
         arma.classList.add('card1')
