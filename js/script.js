@@ -224,9 +224,11 @@ const card = `
 `
 function att(arma, index, origem = 'do'){
     if(posAluno < 175){
-            alunoPos.innerHTML = `
-            <h1>ESCOLHA: ${posAluno + 1}º Lugar Al ${Alunos[posAluno + 1][0]} - ${Alunos[posAluno + 1][1]} </h1>
-            `
+        
+        alunoPos.innerHTML = 
+        posAluno !== 174?`<h1>ESCOLHA: ${posAluno + 1}º Lugar Al ${Alunos[posAluno + 1][0]} - ${Alunos[posAluno + 1][1]} </h1>
+            <br><h3>PRÓXIMO: ${posAluno + 2}º Lugar Al ${Alunos[posAluno + 2][0]} - ${Alunos[posAluno + 2][1]}</h3>`
+            :`<h1>ESCOLHA: ${posAluno + 1}º Lugar Al ${Alunos[posAluno + 1][0]} - ${Alunos[posAluno + 1][1]} </h1>`
         }
         else{
             alunoPos.innerHTML = '<h1>Escolhas Finalizadas!</h1>'
