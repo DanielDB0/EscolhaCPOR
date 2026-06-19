@@ -361,15 +361,26 @@ function attTbArma(arma, index){
         `
 }
 
+
 function exportExcel(index){
+    const stringsSubs = [
+        ['</tr>', '<tr>', '</th>', '<th>', 'thead', '</tbody>', 'table', '/', '<','>', 'class="tbArma"', `id="tb${index}"`, 'tbody', `id="tb${imgArmas[index]}"`],
+        [`
+`, '', ';', '', '', '', '', '','', '', 'ALUNOS CURSO DE', `${nomeArmas[index].toUpperCase()} - 2026`, '', '']
+    ]
+
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
     var tableSelect = document.getElementById(`tb${index}`);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20').replaceAll('</tr>',`
-`).replaceAll('<tr>', '').replaceAll('</th>', ';').replaceAll('<th>', '').replace(`<tbody id="tb${armas[1][index]}">`, '').replaceAll(
-'thead', '').replaceAll(`<table class="tbArma" id="tb${index}">`, `ALUNOS ${armas[0][index].toUpperCase()} - TURMA 2026`).replace(
-'</tbody>', ''). replace('</table>', '').replaceAll('/', '').replaceAll('<>', '');
-    
+
+    let formatTable = tableSelect.outerHTML.replace(/ /g, '%20')
+    for (let i = 0; i < stringsSubs[0].length; i++) {
+        formatTable = formatTable.replaceAll(stringsSubs[0][i], stringsSubs[1][i])
+    }
+
+    var tableHTML = formatTable
+
+
     // Especificando o nome do arquivo
     filename = `Alunos_${armas[0][index].toUpperCase()}_2026.xls`;
     
