@@ -5,6 +5,13 @@ function abrirModal() {
 function fecharModal() {
     document.getElementById("modalAuto").style.display = "none";
     Undo.style.display = "none"
+    Showtb = false
+    BtnClass()
+    for (let i = 0; i < 175; i++) {
+            document.querySelector('.GeralClass').innerHTML += `<tr><th>${i}</th><th>${Alunos[i + 1][0]}
+            </th><th>${Alunos[i + 1][1]}</th></tr>`            
+        }
+    btnClass.style.display = "none"
 }
 
 const imgArmas = [
@@ -31,7 +38,10 @@ let escolhasArmas = [[],[],[],[],[],[],[]]
 
 const armas = [nomeArmas, imgArmas]
 const alunoPos = document.querySelector('.PosAluno')
+const tbCont = document.querySelector('#tbContainer')
 const Undo = document.querySelector('#undo')
+const txtUndo = document.querySelector('.txtUndo')
+const btnClass = document.querySelector('#btnClass')
 
 let posAluno = 0
 
@@ -260,6 +270,7 @@ function att(arma, index, origem = 'do'){
             abrirModal();
         }   
         console.log(index + ' ' + escolhasArmas[index] + ' ' + posAluno)
+        gerarTbClass()
     }
     const cardContainer = document.querySelector('#cards')
     
@@ -268,6 +279,30 @@ function att(arma, index, origem = 'do'){
         att(document.querySelector(`#Arma${i+1}`), i)
     }
     
+    
+    function gerarTbClass(){
+
+        tbCont.innerHTML =`
+        <h1>Classificação</h1>
+        <br>
+        <div id="GeralClass">
+            <table class="GeralClass"><thead>
+                <tr><th>POS</th><th>Nº</th><th>NOME DE GUERRA</th></tr></thead><tbody></tbody>
+                </table>
+            </div>`
+
+        const tabela = document.querySelector('.GeralClass')
+
+        for (let i = 0; i < (Alunos.length - posAluno - 1); i++) {
+            tabela.innerHTML += `<tr><th>${posAluno + i + 1}</th><th>${Alunos[posAluno + i + 1][0]}
+            </th><th>${Alunos[posAluno + i + 1][1]}</th></tr>`            
+        }
+
+    }
+
+
+
+
     const infantaria = document.querySelector('#Arma1')
     infantaria.addEventListener("click", Inf)
     const cavalaria = document.querySelector('#Arma2')
@@ -405,7 +440,21 @@ function verArma(){
     }
 }
 
-Undo.addEventListener("click", undo)
+txtUndo.addEventListener("click", undo)
+btnClass.addEventListener("click", BtnClass)
+
+let Showtb = false
+function BtnClass(){
+    Showtb = !Showtb
+    if (Showtb) {
+        tbCont.style.display = "unset"
+        btnClass.innerHTML = '<h3>Ocultar Classificação</h3>'
+    }
+    else{
+        btnClass.innerHTML = '<h3>Mostrar Classificação</h3>'
+        tbCont.style.display = "none"
+    }
+}
 
 function undo(){
     for(index = 0; index < 7; index++){
