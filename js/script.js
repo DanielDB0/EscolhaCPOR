@@ -52,8 +52,7 @@ let Alunos = [
     [104, 'LUCCA'],
     [101, 'MALDONADO'], 
     [102, 'MOTTA'], 
-    [103, 'MENDES'], 
-    [105, 'KAUÃ'],
+    [103, 'MENDES'],
     [107, 'OSTROWSKI'], 
     [108, 'ALMEIDA'], 
     [109, 'MALTEZ'], 
@@ -217,9 +216,7 @@ let Alunos = [
     [626, 'DE ALMEIDA'], 
     [627, 'ALBUQUERQUE'], 
     [628, 'FERNANDES'], 
-    [629, 'BENVENUTO'],
-    [522, 'HITO'], 
-    [306, 'FIGUEIREDO']
+    [629, 'BENVENUTO']
 ];
 
 margem = 175 - Alunos.length + 1
@@ -247,7 +244,11 @@ function att(arma, index, origem = 'do'){
             Undo.style.display = "inline"
             escolhasArmas[index].push(posAluno)
         }
+
         arma.innerHTML = `
+        <div id="X" class="Y">
+            <img src="img/X.png" alt="X" class="Ximg"/>
+        </div>
         <div class="txtCard">
             <h3 class="NomeArma">
                 ${armas[0][index]}
@@ -264,6 +265,10 @@ function att(arma, index, origem = 'do'){
         if(25-escolhasArmas[index].length === 0){
             arma.classList.remove('card')
             arma.classList.add('disable')
+
+
+            document.querySelectorAll('#X')[index].classList.remove('Y')
+            document.querySelectorAll('#X')[index].classList.add('X')
 
         }
         if(posAluno == 175){

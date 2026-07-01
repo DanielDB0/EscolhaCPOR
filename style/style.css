@@ -179,9 +179,6 @@ table {
     margin-top: -10px;
 }
 
-.pButton{
-}
-
 .card:hover{
     border: solid #f00;
     color: rgb(30, 45, 1);
@@ -190,6 +187,24 @@ table {
         -0.5px  0.5px 0 red,
          0.5px  0.5px 0 red;
     width: 20%;
+}
+
+.Y{
+    display: none;
+}
+
+.Ximg{
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    margin-top: 20%;
+}
+
+.X{
+    width: 100%;
+    display: flex;
+    position: relative;
+    z-index: 1;
 }
 
 .imgArma{
